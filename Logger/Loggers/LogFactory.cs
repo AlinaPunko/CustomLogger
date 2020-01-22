@@ -17,6 +17,16 @@ namespace Logger.Loggers
             Enum.TryParse(group.Level.MinLevel, out LoggerLevels level);
             Enum.TryParse(group.Target.LoggerType, out LoggerTypes type);
 
+            if (level == 0)
+            {
+                level = LoggerLevels.Info;
+            }
+
+            if (type == 0)
+            {
+                type = LoggerTypes.Console;
+            }
+
             switch (type)
             {
                 case LoggerTypes.File:
