@@ -17,9 +17,7 @@ namespace Logger.Loggers
         public override void Error(string message)
         {
             using (StreamWriter streamWriter = new StreamWriter(this.LogFilePath, true))
-            {
                 streamWriter.WriteLine($"Error: {message} occured at {DateTime.Now}");
-            }
         }
 
         public override void Error(Exception ex)

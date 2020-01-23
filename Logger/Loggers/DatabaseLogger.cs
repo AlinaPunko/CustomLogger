@@ -5,8 +5,8 @@ namespace Logger.Loggers
 {
     class DatabaseLogger : Logger
     {
-        private LoggerLevels LogLevel;
-        private List<string> LoggingDB { get; set; }
+        public LoggerLevels LogLevel { get; }
+        private List<string> LoggingDb { get; set; }
 
         public DatabaseLogger(LoggerLevels LogLevel)
         {
@@ -15,24 +15,24 @@ namespace Logger.Loggers
 
         public DatabaseLogger()
         {
-            LoggingDB = new List<string>();
+            LoggingDb = new List<string>();
         }
 
         public override void Error(string message)
         {
-            LoggingDB.Add($"Error: {message} occured at {DateTime.Now}");
+            LoggingDb.Add($"Error: {message} occured at {DateTime.Now}");
         }
 
         public override void Error(Exception ex)
         {
-            LoggingDB.Add($"Error: {ex.ToString()} occured at {DateTime.Now}");
+            LoggingDb.Add($"Error: {ex.ToString()} occured at {DateTime.Now}");
         }
 
         public override void Warning(string message)
         {
             if (LogLevel <= LoggerLevels.Warning)
             {
-                LoggingDB.Add($"Warning: {message} occured at {DateTime.Now}");
+                LoggingDb.Add($"Warning: {message} occured at {DateTime.Now}");
             }
         }
 
@@ -40,7 +40,7 @@ namespace Logger.Loggers
         {
             if (LogLevel <= LoggerLevels.Info)
             {
-                LoggingDB.Add($"Info: {message} occured at {DateTime.Now}");
+                LoggingDb.Add($"Info: {message} occured at {DateTime.Now}");
             }
         }
     }

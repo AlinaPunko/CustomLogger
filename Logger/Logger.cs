@@ -11,7 +11,7 @@ namespace Logger
 
         public virtual void Error(Exception ex)
         {
-            Console.WriteLine($"Error: {ex.ToString()} occured at { DateTime.Now}");
+            Console.WriteLine($"Error: {ex.ToString()} occured at {DateTime.Now}");
         }
 
         public virtual void Warning(string message)
