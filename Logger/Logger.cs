@@ -1,27 +1,43 @@
 ﻿using System;
+using Logger.Constants;
+using Logger.Loggers;
 
 namespace Logger
 {
-    public class Logger:ILogger
+    public class Logger
     {
-        public virtual void Error(string message)
+        private ILogger logger;
+        private readonly LogLevel logLevel;
+
+        public Logger()
         {
-            Console.WriteLine($"Error: {message} occured at {DateTime.Now}");
+            logger = LoggerFactory.GetLogger(out logLevel);
         }
 
-        public virtual void Error(Exception ex)
+        public void Error(string message)
         {
-            Console.WriteLine($"Error: {ex.ToString()} occured at {DateTime.Now}");
+            logger.Error(message);
         }
 
-        public virtual void Warning(string message)
+        public void Error(Exception ex)
         {
-            Console.WriteLine($"Warning: {message} occured at {DateTime.Now}");
+            logger.Error(ex);
         }
 
-        public virtual void Info(string message)
+        public void Warning(string message)
         {
-            Console.WriteLine($"Info: {message} at {DateTime.Now}");
+            if (logLevel != LogLevel.Error)
+            {
+                logger.Warning(message);
+            }
+        }
+
+        public void Info(string message)
+        {
+            if (logLevel == LogLevel.Info)
+            {
+                logger.Info(message);
+            }
         }
     }
 }

@@ -4,19 +4,13 @@ namespace Logger.ConfigElements
 {
     public class LogSection : ConfigurationSection
     {
-        const string TARGET = "target";
-        const string LEVEL = "level";
+        private const string TargetPropertyName = "target";
+        private const string LevelPropertyName = "level";
 
-        [ConfigurationProperty(TARGET, IsDefaultCollection = false)]
-        public TargetElement Target
-        {
-            get { return (TargetElement)this[TARGET]; }
-        }
+        [ConfigurationProperty(TargetPropertyName)]
+        public TargetElement Target => (TargetElement)this[TargetPropertyName];
 
-        [ConfigurationProperty(LEVEL, IsDefaultCollection = false)]
-        public LevelElement Level
-        {
-            get { return (LevelElement)this[LEVEL]; }
-        }
+        [ConfigurationProperty(LevelPropertyName)]
+        public LevelElement Level => (LevelElement)this[LevelPropertyName];
     }
 }

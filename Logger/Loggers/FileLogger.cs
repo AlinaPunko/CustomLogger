@@ -3,51 +3,33 @@ using System.IO;
 
 namespace Logger.Loggers
 {
-    class FileLogger : Logger
+    class FileLogger : ILogger
     {
-        private string LogFilePath { get; set; }
-        private LoggerLevels LogLevel;
+        private string LogFilePath { get;}
 
-        public FileLogger(LoggerLevels LogLevel, string FilePath = "@log.txt")
+        public FileLogger(string FilePath = "@log.txt")
         {
             LogFilePath = FilePath;
-            this.LogLevel = LogLevel;
         }
 
-        public override void Error(string message)
+        public void Error(string message)
         {
-            using (StreamWriter streamWriter = new StreamWriter(this.LogFilePath, true))
-                streamWriter.WriteLine($"Error: {message} occured at {DateTime.Now}");
+            File.AppendAllText(LogFilePath, $"Error: {message} occured at {DateTime.Now} \n");
         }
 
-        public override void Error(Exception ex)
+        public void Error(Exception ex)
         {
-            using (StreamWriter streamWriter = new StreamWriter(this.LogFilePath, true))
-            {
-                streamWriter.WriteLine($"Error: {ex.ToString()} occured at {DateTime.Now}");
-            }
+            File.AppendAllText(LogFilePath, $"Error: {ex} occured at {DateTime.Now} \n");
         }
 
-        public override void Warning(string message)
+        public void Warning(string message)
         {
-            if (LogLevel <= LoggerLevels.Warning)
-            {
-                using (StreamWriter streamWriter = new StreamWriter(this.LogFilePath, true))
-                {
-                    streamWriter.WriteLine($"Warning: {message} occured at {DateTime.Now}");
-                }
-            }
+            File.AppendAllText(LogFilePath, $"Warning: {message} occured at {DateTime.Now} \n");
         }
 
-        public override void Info(string message)
+        public void Info(string message)
         {
-            if (LogLevel <= LoggerLevels.Info)
-            {
-                using (StreamWriter streamWriter = new StreamWriter(this.LogFilePath, true))
-                {
-                    streamWriter.WriteLine($"Info: {message} at {DateTime.Now}");
-                }
-            }
+            File.AppendAllText(LogFilePath, $"Info: {message} at {DateTime.Now} \n");
         }
     }
 }

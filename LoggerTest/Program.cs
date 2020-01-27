@@ -6,7 +6,7 @@ namespace LoggerTest
     {
         static void Main(string[] args)
         {
-            Logger.Logger logger = Logger.Loggers.LogFactory.GetLogger();
+            Logger.Logger logger = new Logger.Logger();
             logger.Error("I'm a small bug");
             logger.Info("I can be useful");
             logger.Warning("Nobody looks at warnings(");

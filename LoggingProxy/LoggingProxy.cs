@@ -1,22 +1,23 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Dynamic;
+﻿using System.Dynamic;
 using System.Reflection;
 using ImpromptuInterface;
+using Logger;
+using Logger.Constants;
 
 namespace LoggingProxy
 {
-    class LoggingProxy: DynamicObject
+    class LoggingProxy : DynamicObject
     {
-        private readonly Logger.Logger _logger;
-        static object loggedObject;
+        private readonly ILogger logger;
+        private static object loggedObject;
+        private readonly LogLevel logLevel;
 
         public LoggingProxy()
         {
-            _logger = Logger.Loggers.LogFactory.GetLogger();
+            logger = LoggerFactory.GetLogger(out logLevel);
         }
 
-        public static T CreateInstance <T> (T obj) where T: class
+        public static T CreateInstance<T>(T obj) where T: class
         {
             loggedObject = obj;
             return new LoggingProxy().ActLike<T>();
@@ -29,18 +30,24 @@ namespace LoggingProxy
             if (invokedMethod != null)
             {
                 result = invokedMethod.Invoke(loggedObject, args);
-                _logger.Info(binder.Name);
+                if (logLevel <= LogLevel.Info)
+                {
+                    logger.Info(binder.Name);
+                }
                 return true;
             }
-
-            _logger.Error(binder.Name);
+            
+            logger.Error(binder.Name);
             result = null;
             return false;
         }
 
         public override bool TrySetMember(SetMemberBinder binder, object value)
         {
-            _logger.Info($"{binder.Name} was set into {value.ToString()}");
+            if (logLevel <= LogLevel.Info)
+            {
+                logger.Info($"{binder.Name} was set into {value}");
+            }
             return true;
         }
 
