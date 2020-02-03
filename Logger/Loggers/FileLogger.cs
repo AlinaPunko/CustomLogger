@@ -7,9 +7,9 @@ namespace Logger.Loggers
     {
         private string LogFilePath { get;}
 
-        public FileLogger(string FilePath = "@log.txt")
+        public FileLogger(string filePath = "@log.txt")
         {
-            LogFilePath = FilePath;
+            LogFilePath = filePath;
         }
 
         public void Error(string message)
