@@ -11,7 +11,7 @@ namespace LoggingProxy
             Name = name;
         }
 
-        public void eat()
+        public void Eat()
         {
             Console.WriteLine("EAT!");
         }

@@ -5,8 +5,8 @@
         static void Main(string[] args)
         {
             ICat cat = new Cat("Tom");
-            var proxy = LoggingProxy.CreateInstance(cat);
-            proxy.eat();
+            ICat proxy = LoggingProxy.CreateInstance(cat);
+            proxy.Eat();
             proxy.Name = "Jerry";
             proxy.Name = "Cookie";
         }

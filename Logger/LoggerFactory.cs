@@ -14,7 +14,7 @@ namespace Logger
 
         public static ILogger GetLogger(out LogLevel logLevel)
         {
-            var group = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None).GetSection(LogSectionName) as LogSection;
+            LogSection group = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None).GetSection(LogSectionName) as LogSection;
 
             if (!Enum.TryParse(group.Level.MinLevel, out LogLevel level))
             {

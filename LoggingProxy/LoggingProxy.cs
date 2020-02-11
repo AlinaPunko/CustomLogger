@@ -48,6 +48,7 @@ namespace LoggingProxy
             {
                 logger.Info($"{binder.Name} was set into {value}");
             }
+
             return true;
         }
 

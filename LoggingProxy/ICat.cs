@@ -2,7 +2,7 @@
 {
     public interface ICat
     {
-        void eat();
+        void Eat();
 
         string Name
         {
