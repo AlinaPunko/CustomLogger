@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace LoggingProxy
+﻿namespace LoggingProxy
 {
     public interface ICat
     {
-        void eat();
+        void Eat();
 
         string Name
         {

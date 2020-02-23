@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace LoggingProxy
+﻿namespace LoggingProxy
 {
     class Program
     {
@@ -8,7 +6,7 @@ namespace LoggingProxy
         {
             ICat cat = new Cat("Tom");
             ICat proxy = LoggingProxy.CreateInstance(cat);
-            proxy.eat();
+            proxy.Eat();
             proxy.Name = "Jerry";
             proxy.Name = "Cookie";
         }

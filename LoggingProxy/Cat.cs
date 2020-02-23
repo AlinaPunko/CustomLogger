@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace LoggingProxy
 {
@@ -13,7 +11,7 @@ namespace LoggingProxy
             Name = name;
         }
 
-        public void eat()
+        public void Eat()
         {
             Console.WriteLine("EAT!");
         }

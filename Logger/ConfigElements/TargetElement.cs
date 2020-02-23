@@ -3,20 +3,14 @@
 namespace Logger.ConfigElements
 {
     public class TargetElement : ConfigurationElement
-    { 
-        const string LOGGER_TYPE = "loggerType";
-        const string FILE_NAME = "fileName";
+    {
+        private const string LoggerTypePropertyName = "loggerType";
+        private const string FileNamePropertyName = "fileName";
 
-        [ConfigurationProperty(LOGGER_TYPE, DefaultValue = "", IsRequired = true)]
-        public string LoggerType
-        {
-            get { return (string)this[LOGGER_TYPE]; }
-        }
+        [ConfigurationProperty(LoggerTypePropertyName, DefaultValue = "Console", IsRequired = true)]
+        public string LoggerType => (string)this[LoggerTypePropertyName];
 
-        [ConfigurationProperty(FILE_NAME, DefaultValue = "", IsRequired = false)]
-        public string FileName
-        {
-            get { return (string)this[FILE_NAME]; }
-        }
+        [ConfigurationProperty(FileNamePropertyName, DefaultValue = "", IsRequired = false)]
+        public string FileName => (string)this[FileNamePropertyName];
     }
 }
